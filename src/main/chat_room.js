@@ -1,4 +1,4 @@
-import React,{useEffect,useState,useRef} from 'react';
+import React,{useEffect,useState,useRef,useContext} from 'react';
 import  '../App.css';
 import io from 'socket.io-client';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -16,6 +16,9 @@ import ListItemText from '@mui/material/ListItemText';
 import FolderIcon from '@mui/icons-material/Folder';
 import Avatar from '@mui/material/Avatar';
 
+import {userContext} from '../provider/userContext';
+import {conf} from '../conf/conf.js'; // 
+
 const con = {padding:'0'};
 const preCss = {color:'red',float:'right'};
 //const socket =  io.connect('https://nodechatserver.nayaguny.repl.co');
@@ -24,12 +27,14 @@ console.log('socket 초기화');
 
 function Chat_room(props) {
 
-  const [userId, setUserId] = useState(props.userId);
+  const userCO  = useContext(userContext); //user class 객체
+  //const [userId, setUserId] = useState(props.userId); //기존
+  const [userId, setUserId] = useState(userCO.get('id')); //객체값으로 변경
   const [responseChatId, setChatId] = useState();
   const [msg, setMsg] = useState({});
   const [chat, setChat] = React.useState([]);
   const [chatList, setchatList] = useState([]);
-  const [socket, setSocket] = useState(io.connect('http://localhost:4000'));
+  const [socket, setSocket] = useState(io.connect(conf().CHAT_SERVER_URL));
   const txtField = useRef();
   
   

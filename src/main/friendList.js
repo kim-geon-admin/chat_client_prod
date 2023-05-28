@@ -1,4 +1,4 @@
-import React,{useEffect,useState,useRef} from 'react';
+import React,{useEffect,useState,useRef,useContext} from 'react';
 import  '../App.css';
 import CssBaseline from '@mui/material/CssBaseline';
 import Box from '@mui/material/Box';
@@ -18,7 +18,7 @@ import CommentIcon from '@mui/icons-material/Comment';
 import FolderIcon from '@mui/icons-material/Folder';
 import Avatar from '@mui/material/Avatar';
 import {axiosGet} from '../utill/getAxios';
-
+import {userContext} from '../provider/userContext';
 
 
 
@@ -34,13 +34,15 @@ const scrollBox = useRef(null);
   const [friendList, setFriendList] = useState([]);
   const [fList, setFlist] = useState([]);
   const txtField = useRef();
+  const userCO  = useContext(userContext); //user class 객체
 
   const  iconClick = async (e) => {
       console.log(e.currentTarget.value);
 
 
       let paramObj={
-              room_user:props.userId,
+             // room_user:props.userId,
+              room_user:userCO.get('id'),
               room_user2:e.currentTarget.value
                     };
 
@@ -50,13 +52,15 @@ const scrollBox = useRef(null);
       props.setChatRomm(chatRoomInfo);
       //대화 창으로 넘어 가기 위해 값 지정 
       props.setTabNumber(1);
+      // roomList를 보여지기 위한 값
+      props.setDetailValue('chat');
   }
   
   const  getFriendList = async () =>{
-    console.log(`현재 접속중인 id ${props.userId}`);
+    console.log(`현재 접속중인 id ${userCO.get('id')}`);
     
     let paramObj={
-      id : props.userId
+      id : userCO.get('id')
     }
 
   let result =   await axiosGet('/friend/getFriendList',paramObj);   

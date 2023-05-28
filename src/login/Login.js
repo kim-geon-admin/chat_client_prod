@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, {useContext} from 'react';
 import Avatar from '@mui/material/Avatar';
 import Button from '@mui/material/Button';
 import CssBaseline from '@mui/material/CssBaseline';
@@ -15,11 +15,15 @@ import { createTheme, ThemeProvider } from '@mui/material/styles';
 import {axiosGet} from '../utill/getAxios';
 import {useNavigate} from 'react-router-dom';
 
+import {userContext} from '../provider/userContext';
+
+
 const theme = createTheme();
 
 export default function SignIn() {
 
-    let navigate = useNavigate();
+  let navigate = useNavigate();
+  const userCO  = useContext(userContext);
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -36,7 +40,7 @@ export default function SignIn() {
     //조회 버튼 클릭시 조회 
     const  sendData = async (data) =>{
 
-
+    
       let sData = {
         id: data.get('id'),
         password: data.get('password')  
@@ -47,8 +51,13 @@ export default function SignIn() {
         console.log(contents);
       //  setRows(contents);
     
-
-      if('success' == contents) navigate("/main",{state:sData});
+      //로그인성공
+      if('success' == contents){ 
+        //로그인한 id 넣어주기
+        userCO.set('id',data.get('id'));
+        console.log('로그인id',userCO.get('id'));
+        navigate("/main",{state:sData});
+      }
       else console.log('접속실패');
       
       };
