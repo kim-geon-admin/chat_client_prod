@@ -11,7 +11,7 @@ import ChattingList from './ChatRoom.js';
 import { useLocation } from 'react-router-dom';
 import '../App.css';
 
-export default function IconTabs(props) {
+export default function Main(props) {
   const location = useLocation(); // useNavigate에서 보낸 데이터를 받을 때 사용
   const [value, setValue] = React.useState(0);
   const [id, setId] = React.useState(location.state.id); //login.js에서 분기될떄 id값을 넘겨준다

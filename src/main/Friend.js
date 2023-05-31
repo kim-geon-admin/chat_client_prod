@@ -25,7 +25,7 @@ import {userContext} from '../provider/userContext';
 const con = {padding:'0'};
 const preCss = {color:'red',float:'right'};
 
-function Chat(props) {
+function Friend(props) {
   
 const scrollBox = useRef(null);
  // let a = 'kg';
@@ -164,4 +164,4 @@ const scrollBox = useRef(null);
   );
 }
 
-export default Chat;
+export default Friend;

@@ -25,7 +25,7 @@ import {axiosGet} from '../utill/getAxios';
 const con = {padding:'0'};
 const preCss = {color:'red',float:'right'};
 
-function Chat(props) {
+function ChatRoom(props) {
   
 const scrollBox = useRef(null);
  // let a = 'kg';
@@ -146,4 +146,4 @@ const scrollBox = useRef(null);
   );
 }
 
-export default Chat;
+export default ChatRoom;

@@ -25,7 +25,7 @@ const preCss = {color:'red',float:'right'};
 
 console.log('socket 초기화');
 
-function Chat_room(props) {
+function Chat(props) {
 
   const userCO  = useContext(userContext); //user class 객체
   //const [userId, setUserId] = useState(props.userId); //기존
@@ -182,4 +182,4 @@ function Chat_room(props) {
   );
 }
 
-export default Chat_room;
+export default Chat;
