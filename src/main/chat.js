@@ -25,6 +25,11 @@ const preCss = {color:'red',float:'right'};
 
 console.log('socket 초기화');
 
+
+const chatBoxCssLeft = { display:'grid',gridAutoColumns: 'minmax(10px, 0.4fr)'};
+const chatBoxCssRight = { display:'grid',gridAutoColumns: 'minmax(10px, 0.4fr)', gridTemplateColumns: '1fr 1fr'};
+
+
 function Chat(props) {
 
   const userCO  = useContext(userContext); //user class 객체
@@ -55,10 +60,13 @@ function Chat(props) {
    //  setChat(message => [...chat, message]);
     // ad(message); 
       console.log('수행',userId);
-    
+     
   
   });
-    return () => socket.disconnect();
+    return () => {
+      console.log('소켓 연결이 종료되었습니다');
+      socket.disconnect();
+    }
 
   },[]);
 
@@ -115,24 +123,33 @@ function Chat(props) {
             if (chat.id !== userId) {
               return (
               <ListItem key={index}>
-              <ListItemAvatar sx={{  width: '0vh' }}>
-                <Avatar>
-                  <FolderIcon />
-                </Avatar>
-              </ListItemAvatar>
-                    <pre style={preCss}>{chat.message}</pre>
-                  {/* <pre  className="preCss">{chat}</pre> */}
-
+                <ListItemAvatar sx={{  width: '0vh' }}>
+                  <Avatar>
+                    <FolderIcon />
+                  </Avatar>
+                </ListItemAvatar>
+                <Box sx={chatBoxCssLeft}>
+                  <Box>
+                    <pre class='preCssLeft'>{chat.message}</pre>
+                  </Box>
+                </Box>
               </ListItem>
               )
           }else{ 
              return (
-            <ListItem key={index}>
-              <ListItemText 
-              sx={{ textAlign: 'right' }}> 
-              <pre style={preCss}>{chat.message}</pre>
-              </ListItemText>
-            </ListItem>
+           
+                <ListItem key={index}>
+                  <ListItemText 
+                  sx={{ textAlign: 'right' }}> 
+                  <Box sx={chatBoxCssRight}>
+                     <Box></Box>
+                      <Box>
+                        <pre class='preCssRight'>{chat.message}</pre>
+                      </Box>
+                  </Box>
+                  </ListItemText>
+                </ListItem>
+      
             )
           }
         }
@@ -149,27 +166,27 @@ function Chat(props) {
   return (
     <>
       <CssBaseline />
-      <Container style={con} maxWidth="false">
-        <Box sx={{ bgcolor: '#cfe8fc', height: '65vh' ,  overflow: 'auto' }} onScroll={loadMoreItems}>
-             <List sx={{  height: '65vh' }}   onScroll={loadMoreItems}>
+      <Container  class='chatContainer' maxWidth="false">
+        <Box sx={{  overflow: 'auto' }} onScroll={loadMoreItems}>
+             <List   onScroll={loadMoreItems}>
                     {listRender()}
              </List>
 
         </Box>
 
-        <Box sx={{  height: '27vh' ,  display: 'flex',
+        <Box sx={{  display: 'grid', gridTemplateColumns: '8fr 2fr'
            }} >
               <TextField
                   id="outlined-multiline-static"
-                  sx = {{width:'85%', height: '25vh' }}
+                  sx = {{}}
                   multiline
-                  rows={6}
+                  rows={4}
                   onChange = {getTxtField}
                   ref={txtField}
                   //defaultValue="Default Value"
             />
             <Button variant="contained"
-                sx = {{width:'15%', height: '25vh' }}
+                sx =  {{}}
               endIcon={<SendIcon />}
                   onClick={send}
               >

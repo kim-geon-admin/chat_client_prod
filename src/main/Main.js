@@ -28,24 +28,23 @@ export default function Main(props) {
   };
 
   return (
-    <div className="body">
-    <Tabs value={value} onChange={handleChange} aria-label="icon tabs example" variant="fullWidth" >
-      <Tab icon={<PhoneIcon />} aria-label="phone" /> 
-      <Tab icon={<FavoriteIcon />} aria-label="favorite" />
-      <Tab icon={<PersonPinIcon />} aria-label="person" />
-     
-    </Tabs>
- 
-    <Box sx={{ height: 1 }} >      
-       
-
-        {
-          value == 0 && <Friend userId={id} setTabNumber={setValue} setDetailValue={setDetailValue} setChatRomm ={setChatRomm} /> ||
-          value == 1 && detailValue == 'chat' && <Chat userId={id} chatRoom={chatRoom} /> ||
-          value == 1 && <ChattingList userId={id} setTabNumber={setValue}  setDetailValue={setDetailValue} setChatRomm ={setChatRomm} />  
-         // value == 2 && <ChattingList userId={id} setTabNumber={setValue} setChatRomm ={setChatRomm} /> 
-         }
-    </Box>
-    </div>
+    <Box className='main'>
+      <Box>
+          <Tabs value={value} onChange={handleChange} aria-label="icon tabs example" variant="fullWidth" >
+            <Tab icon={<PhoneIcon />} aria-label="phone" /> 
+            <Tab icon={<FavoriteIcon />} aria-label="favorite" />
+            <Tab icon={<PersonPinIcon />} aria-label="person" />
+          
+          </Tabs>
+        </Box>
+      <Box >      
+            {
+              value == 0 && <Friend userId={id} setTabNumber={setValue} setDetailValue={setDetailValue} setChatRomm ={setChatRomm} /> ||
+              value == 1 && detailValue == 'chat' && <Chat userId={id} chatRoom={chatRoom} /> ||
+              value == 1 && <ChattingList userId={id} setTabNumber={setValue}  setDetailValue={setDetailValue} setChatRomm ={setChatRomm} />  
+            // value == 2 && <ChattingList userId={id} setTabNumber={setValue} setChatRomm ={setChatRomm} /> 
+            }
+      </Box>
+   </Box>
   );
 } 

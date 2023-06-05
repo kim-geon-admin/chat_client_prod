@@ -64,7 +64,7 @@ export function axiosFilePost(url, param) {
 
 export function axiosGet(url,parmObj) {
   //let token = sessionStorage.getItem("token");
-  console.log('dd',conf().CHAT_SERVER);
+
   console.log(parmObj);
   return axios(
     {
@@ -82,7 +82,7 @@ export function axiosGet(url,parmObj) {
     return response.data;
   }).catch(error => {
     if(error.response.status ='302'){
-      window.location.href = conf().CHAT_CLIENT_URL;
+      window.location.href = conf().CLIENT_SERVER;
     }
 });
 }
