@@ -16,7 +16,7 @@ import {axiosGet} from '../utill/getAxios';
 import {useNavigate} from 'react-router-dom';
 
 import {userContext} from '../provider/userContext';
-
+import  './Login.css';
 
 const theme = createTheme();
 
@@ -52,7 +52,7 @@ export default function SignIn() {
       //  setRows(contents);
     
       //로그인성공
-      if('success' == contents){ 
+      if('success' === contents){ 
         //로그인한 id 넣어주기
         userCO.set('id',data.get('id'));
         console.log('로그인id',userCO.get('id'));
@@ -72,6 +72,7 @@ export default function SignIn() {
             display: 'flex',
             flexDirection: 'column',
             alignItems: 'center',
+        
           }}
         >
           <Avatar sx={{ m: 1, bgcolor: 'secondary.main' }}>
@@ -80,16 +81,17 @@ export default function SignIn() {
           <Typography component="h1" variant="h5">
             Sign in
           </Typography>
-          <Box component="form" onSubmit={handleSubmit} noValidate sx={{ mt: 1 }}>
+          <Box component="form"  onSubmit={handleSubmit} noValidate sx={{ mt: 1  }}>
             <TextField
               margin="normal"
               required
               fullWidth
               id="id"
-              label="Email Address"
+              label="id"
               name="id"
               autoComplete="id"
               autoFocus
+           
             />
             <TextField
               margin="normal"

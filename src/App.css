@@ -2,12 +2,16 @@
 
 div {
   opacity:1;
-  z-index:999;
+  
   width:100%;
   height:100%;
 }
 
-
+.login {
+  opacity:1;
+  width:100%;
+  height:100%;
+}
 
 
 .preCssLeft {

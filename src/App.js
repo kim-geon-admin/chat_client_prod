@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react';
-import {BrowserRouter as Router,Route,Routes,Link} from 'react-router-dom';
+import {HashRouter as Router,Route,Routes,Link} from 'react-router-dom';
 
 import {userContext} from './provider/userContext.js'
 import userClassObject from './class/userClass.js';
@@ -8,7 +8,7 @@ import LogIn from './login/Login.js';
 import Main from './main/Main.js';
 import './App.css';
 
-
+ 
 
 function App() {
   let userClass = new userClassObject('');
